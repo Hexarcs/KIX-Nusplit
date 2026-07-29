@@ -1,51 +1,51 @@
-# ⚡ KIX Deployment Suite: The Sovereign Shadow Layer
+# ⚡ KIX Deployment Suite: Autonomous Payment Layer
 
 ![Bitcoin](https://img.shields.io/badge/Bitcoin-Lightning-orange)
 ![Docker](https://img.shields.io/badge/Docker-Required-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Privacy](https://img.shields.io/badge/Focus-Sovereignty-black)
+![Architecture](https://img.shields.io/badge/Focus-Autonomy-black)
 
-KIX is a **Commercial Sovereignty Framework** designed to transition merchants from centralized, monitored rails to the Bitcoin Lightning Network. It is engineered to mimic the user experience of Brazil's Pix, effectively acting as a "Parallel Pixel" that bypasses financial surveillance and arbitrary banking freezes.
+KIX is an **Independent Merchant Framework** designed to integrate businesses with the Bitcoin Lightning Network. Engineered as a direct response to centralized payment architectures and automated fiscal tracing models (such as Brazil's upcoming automated *split payment* mechanisms), KIX replicates the streamlined user experience of instant QR-code payments while preserving financial operational independence.
 
 🌐 General information and documentation:  
 https://satoshicanvas.com/kix-eng/
 
 ---
 
-# 🇧🇷 The "Pix" Strategy: Cognitive Hacking
+# 🇧🇷 The "Pix" Strategy: Familiarity and Adoption
 
-In Brazil, the state performed the largest mass training in history: teaching 150 million people to use QR codes for instant payments. KIX captures this doctrine.
+Brazil successfully trained 150 million people to adopt instant QR-code transactions. KIX leverages this established habit to reduce friction in alternative payment adoption.
 
-* **Mimetismo (Mimicry):** KIX doesn't ask users to learn "crypto." It asks them to "Scan the Pink Pixel."
-* **Economic Secession:** By leveraging the habit of the Pix flow, KIX replaces the Central Bank's oversight with a peer-to-peer Lightning engine.
-* **Incentive Alignment:** "Why give 8% to the bank and state when you can keep 5% and give the customer 3% in sound-money points?"
+* **Familiar Flow:** KIX maintains a user experience identical to standard instant payment rails, avoiding complex onboarding barriers.
+* **Operational Autonomy:** By utilizing the Lightning Network as a settlement layer, merchants operate independently from traditional banking intermediaries and potential account restrictions.
+* **Value Retention:** Designed to optimize merchant margins by eliminating high intermediary fees associated with conventional credit and debit processors.
 
 ---
 
 # 🏗️ System Architecture
 
-                    ┌────────────────────────────┐
-                    │        Merchant UI         │
-                    │   (KIX Dashboard-homepage) │
-                    └─────────┬──────────────────┘
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │      LNbits       │
-                    │  Payment Engine   │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │  Lightning Node   │
-                    │ Phoenixd / Alby   │
-                    └─────────┬─────────┘
-                              │
-                ┌─────────────┴─────────────┐
-                │                           │
-                ▼                           ▼
-        Tor Hidden Service          VPS Gateway
-          (.onion access)           (Port 80)
+                 ┌────────────────────────────┐
+                 │        Merchant UI         │
+                 │  (KIX Dashboard-homepage)  │
+                 └─────────┬──────────────────┘
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │      LNbits       │
+                 │  Payment Engine   │
+                 └─────────┬─────────┘
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │  Lightning Node   │
+                 │ Phoenixd / Alby   │
+                 └─────────┬─────────┘
+                           │
+                ┌──────────┴──────────┐
+                │                     │
+                ▼                     ▼
+        Tor Hidden Service     VPS Gateway
+          (.onion access)       (Port 80)
 
 
 The system utilizes Docker encapsulation to provide horizontal scalability on a single host. Each instance contains:
@@ -80,7 +80,7 @@ Docker must be installed and running before executing any deployment scripts.
 
 | Method | Script | Description |
 | :--- | :--- | :--- |
-| 1. **Sovereign** | kix_tor_sovereign.sh | 🌑 Maximum Secession, Tor (.onion). Runs LNbits with **Alby Hub**. Requires configuring the **Nostr key from AlbyHub inside LNbits**. |
+| 1. **Autonomous** | kix_tor_sovereign.sh | 🌑 Advanced privacy deployment via Tor (.onion). Runs LNbits with **Alby Hub**. Requires configuring the **Nostr key from AlbyHub inside LNbits**. |
 | 2. **Phoenixd** | kix_phoenixd.sh | 🔥 Ultra-lightweight multi-instance Phoenix node + LNbits + Tor. |
 | 3. **Clearnet VPS** | kix_vps_dedicated.sh | 🌍 Public clearnet deployment on a dedicated VPS (Port 80). |
 
@@ -114,7 +114,7 @@ sudo chmod +x kix_phoenixd.sh
 
 Creates a directory like:
 
-```
+```text
 ~/PHOENIX_[ID]
 ```
 
@@ -151,7 +151,7 @@ The script generates:
 
 The script scans Docker volumes to locate:
 
-```
+```text
 seed.dat
 ```
 
@@ -159,9 +159,9 @@ and prints the generated **Tor .onion address**.
 
 ---
 
-# 2.2 The Sovereign Method (Tor + Alby Hub)
+# 2.2 The Autonomous Method (Tor + Alby Hub)
 
-This is the **maximum sovereignty configuration**.
+This is the **maximum autonomy configuration**.
 
 It runs:
 
@@ -180,7 +180,7 @@ LNbits must be connected to Alby Hub using the **Nostr key**.
 
 ### Run
 
-```bash
+```bash 
 sudo chmod +x kix_tor_sovereign.sh
 ```
 
@@ -198,7 +198,7 @@ Allow **1–2 minutes** for Tor circuit propagation.
 
 ## 2.2.1 The Multi-Instance Bind Mount Method
 
-This is the evolution of the Sovereign Method, specifically engineered for high-availability and easy backups. Unlike standard Docker volumes, this method uses Bind Mounts, mapping the container data directly to visible folders in your home directory.
+This is the evolution of the Autonomous Method, specifically engineered for high-availability and easy backups. Unlike standard Docker volumes, this method uses Bind Mounts, mapping the container data directly to visible folders in your home directory.
 
 ### Key Advantages:
 
@@ -206,16 +206,16 @@ This is the evolution of the Sovereign Method, specifically engineered for high-
 - **Easy Backups:** You can backup your entire node by simply copying a local folder, without complex volume export commands.
 - **Robustness:** Prevents data loss during Docker updates or container migrations.
 
-### Deployment the numer at end is the instance number:
+### Deployment (the number at the end is the instance number):
 
-```bash
+```bash 
 sudo chmod +x kix_multi_tor_bind_mount.sh
 ./kix_multi_tor_bind_mount.sh 9
 ```
 
 ### Folder Structure Created:
 
-The script automatically organizes your sovereignty:
+The script automatically organizes your operational directories:
 
 - `~/KIX_PROTOTIPO9/data/lnbits`: SQLite databases and extensions.
 - `~/KIX_PROTOTIPO9/data/alby`: Your Alby Hub keys and settings.
@@ -237,13 +237,19 @@ Use this when the VPS is **dedicated exclusively to KIX** and you want maximum p
 
 ### Run
 
-```bash
+```bash 
 sudo chmod +x kix_vps_dedicated.sh
 ```
 
 ```bash
 ./kix_vps_dedicated.sh 1
 ```
+
+---
+
+## Future Integrations & Compliance Note
+
+As state architectures evolve toward automated multi-party fiscal diversion systems (such as mandatory automated tax splitting at the point of sale), KIX serves as a non-split-payment baseline ("nusplit" reference model) ensuring native self-custody. Future iterations may include optional export hooks and modular plugins designed to interface cleanly with government electronic invoice standards (such as **Nota Fiscal / NFE APIs**), allowing merchants to maintain transparent fiscal compliance while preserving local control over settlement liquidity.
 
 ---
 
@@ -269,16 +275,13 @@ sudo docker volume prune -f
 
 # 🔐 Security Disclaimer
 
-KIX is a tool for financial autonomy.
+KIX is an open-source framework for financial management and infrastructure independence.
 
 Users are responsible for:
 
-* Their **keys**
-* Their **node security**
-* Their **legal compliance**
-
-**Not your keys, not your coins.  
-Not your node, not your rules.**
+* Their **keys and backups**
+* Their **node security posture**
+* Their **local regulatory and fiscal compliance**
 
 ---
 
@@ -288,7 +291,7 @@ Not your node, not your rules.**
 
 **Topics**
 
-```
+```text
 bitcoin
 lightning-network
 lnbits
@@ -297,5 +300,5 @@ albyhub
 pix-brazil
 self-custody
 privacy
-sovereignty
+autonomy
 ```
